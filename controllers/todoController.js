@@ -2,13 +2,15 @@ const TodoService = require('../services/TodoService');
 
 class TodoController {
   async getTodos(req, res) {
-    const result = await TodoService.getTodoList();
+    const { userId } = req.params;
+    const result = await TodoService.getTodoList(userId);
     res.json(result);
   }
 
   async addTodo(req, res) {
+    const { userId } = req.params;
     const { item } = req.body;
-    const result = await TodoService.addTodo(item);
+    const result = await TodoService.addTodo(userId, item);
     res.json(result);
   }
 

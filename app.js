@@ -7,6 +7,7 @@ const todoRouter = require("./routes/TodoRoutes");
 const userRouter = require("./routes/UserRoutes");
 const errorHandler = require('./middlewares/errorHandler');
 const UserModel=require("./models/UserModel")
+const TodoModel=require("./models/TodoModel")
 const cors = require('cors');
 var app = express();
 

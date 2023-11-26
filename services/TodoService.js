@@ -2,9 +2,9 @@ const Todo = require("../models/TodoModel");
 const ResponseModel = require("../models/ResponseModel");
 
 class TodoService {
-  static async addTodo(item) {
+  static async addTodo(userId, item) {
     return TodoService.handleOperation(async () => {
-      const newTodo = new Todo({ item });
+      const newTodo = new Todo({ userId, item });
       const savedTodo = await newTodo.save();
       return TodoService.createSuccessResponse(
         "Todo added successfully",
@@ -43,9 +43,9 @@ class TodoService {
     });
   }
 
-  static async getTodoList() {
+  static async getTodoList(userId) {
     return TodoService.handleOperation(async () => {
-      const todoList = await Todo.find();
+      const todoList = await Todo.find({ userId });
       return TodoService.createSuccessResponse(
         "Todo list retrieved successfully",
         todoList
