@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const todoController = require('../controllers/todoController');
+const { verifyToken } = require("../middlewares/verifyToken");
 
-router.get('/:userId', todoController.getTodos);
-router.post('/:userId', todoController.addTodo);
-router.delete('/:id', todoController.deleteTodo);
-router.put('/:id', todoController.updateTodo);
+router.get('/',verifyToken, todoController.getTodos);
+router.post('/',verifyToken, todoController.addTodo);
+router.delete('/:id',verifyToken, todoController.deleteTodo);
+router.put('/:id',verifyToken, todoController.updateTodo);
 
 module.exports = router;

@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const UserModel = require("../models/UserModel");
 const jwt = require("jsonwebtoken");
 const ResponseModel = require("../models/ResponseModel");
@@ -36,7 +38,7 @@ class UserServices {
 
       // Generate Token
       const tokenData = { _id: user._id, email: user.email };
-      const token = await UserServices.generateAccessToken(tokenData, "secret", "1h");
+      const token = await UserServices.generateAccessToken(tokenData, process.env.SECRET, "1h");
 
       return ResponseModel.createSuccessResponse('Login successful', { token });
     });
